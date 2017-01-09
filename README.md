@@ -1,12 +1,12 @@
 ## Overview
-This Docker image is Apache 2.4 with Shibboleth SP 2.5.5 installed  running on CentOS 7.
+This Docker image is Apache 2.4 with Shibboleth SP 2.6.0 installed running on CentOS 7.
 
 This image can be used as a base image overriding the configuration with local changes.
 
 Ports 80 and 443 are exposed for traffic.
 
 ## Use as a Base
-This image is ideal for use as a base image for ones own deployment. 
+This image is ideal for use as a base image for one's own deployment. 
 
 For example, add your SP configurations to `./shibboleth-sp` and you app files to `./appfiles/`.
 
