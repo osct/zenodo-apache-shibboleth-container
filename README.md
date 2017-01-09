@@ -5,6 +5,8 @@ This image can be used as a base image overriding the configuration with local c
 
 Ports 80 and 443 are exposed for traffic.
 
+A working example of how this image can be used can be found at https://github.com/UniconLabs/dockerized-idp-testbed.
+
 ## Use as a Base
 This image is ideal for use as a base image for one's own deployment. 
 
