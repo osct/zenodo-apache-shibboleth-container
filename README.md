@@ -7,6 +7,9 @@ Ports 80 and 443 are exposed for traffic.
 
 A working example of how this image can be used can be found at https://github.com/UniconLabs/dockerized-idp-testbed.
 
+## Logs
+Logs for httpd and shibd have been configured to output to the console so that Docker's logging facilities are supported. Each of these logs have been prefaced with an identifier that indicates the type of entry being outputted: `httpd-error`, `httpd-combined`, `sp-shibd`, `sp-native`, `sp-transaction`, `sp-sign`, etc.
+
 ## Use as a Base
 This image is ideal for use as a base image for one's own deployment. 
 
