@@ -2,9 +2,12 @@ FROM centos:centos7
 
 MAINTAINER Unicon, Inc.
 
+#Workaround since OpenSUSE's provo-mirror is not working properly
+COPY security:shibboleth.repo /etc/yum.repos.d/security:shibboleth.repo
+
 RUN yum -y update \
     && yum -y install wget \
-    && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
+#    && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
     && yum -y install httpd shibboleth.x86_64 mod_ssl \
     && yum -y clean all
 
