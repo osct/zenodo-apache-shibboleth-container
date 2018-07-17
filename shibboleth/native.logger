@@ -1,14 +1,14 @@
 # set overall behavior
-log4j.rootCategory=INFO, native_log
+log4j.rootCategory=WARN, native_log
 
-# fairly verbose for DEBUG, so generally leave at INFO
-log4j.category.XMLTooling.XMLObject=INFO
-log4j.category.XMLTooling.KeyInfoResolver=INFO
-log4j.category.Shibboleth.IPRange=INFO
-log4j.category.Shibboleth.PropertySet=INFO
+# fairly verbose for DEBUG, so generally leave at WARN/INFO
+log4j.category.XMLTooling.XMLObject=WARN
+log4j.category.XMLTooling.KeyInfoResolver=WARN
+log4j.category.Shibboleth.IPRange=WARN
+log4j.category.Shibboleth.PropertySet=WARN
 
 # raise for low-level tracing of SOAP client HTTP/SSL behavior
-log4j.category.XMLTooling.libcurl=INFO
+log4j.category.XMLTooling.libcurl=WARN
 
 # useful categories to tune independently:
 #
@@ -29,15 +29,13 @@ log4j.category.XMLTooling.libcurl=INFO
 
 log4j.appender.native_log=org.apache.log4j.RollingFileAppender
 log4j.appender.native_log.fileName=/dev/stdout
-log4j.appender.native_log.maxFileSize=1000000
-log4j.appender.native_log.maxBackupIndex=10
+log4j.appender.native_log.maxFileSize=0
+log4j.appender.native_log.maxBackupIndex=0
 log4j.appender.native_log.layout=org.apache.log4j.PatternLayout
 log4j.appender.native_log.layout.ConversionPattern=sp-native %d{%Y-%m-%d %H:%M:%S} %p %c %x: %m%n
 
 #log4j.appender.warn_log=org.apache.log4j.RollingFileAppender
 #log4j.appender.warn_log.fileName=/var/log/shibboleth-www/native_warn.log
-#log4j.appender.warn_log.maxFileSize=1000000
-#log4j.appender.warn_log.maxBackupIndex=10
 #log4j.appender.warn_log.layout=org.apache.log4j.PatternLayout
 #log4j.appender.warn_log.layout.ConversionPattern=%d{%Y-%m-%d %H:%M:%S} %p %c %x: %m%n
 #log4j.appender.warn_log.threshold=WARN
