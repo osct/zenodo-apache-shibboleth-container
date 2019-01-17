@@ -3,8 +3,15 @@
 # Apache and Shibd gets grumpy about PID files pre-existing from previous runs
 rm -f /etc/httpd/run/httpd.pid /var/lock/subsys/shibd
 
+# Copy custom shibboleth configuration into the configuration folder
+cp -r /opt/shibboleth/* /etc/shibboleth
+
 # Start Shibd
 /etc/shibboleth/shibd-redhat start
+
+# Copy custom http configuration into the configuration folder
+
+cp -r /opt/httpd/* /etc/httpd
 
 # Start httpd
 exec httpd -DFOREGROUND

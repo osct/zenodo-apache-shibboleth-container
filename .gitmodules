@@ -1,0 +1,3 @@
+[submodule "zenodo"]
+	path = zenodo
+	url = https://github.com/osct/zenodo.git
