@@ -2,12 +2,17 @@ FROM centos:centos7
 
 LABEL maintainer="INFN"
 
+ENV LANG en_US.UTF-8
+
 RUN yum -y update \
     && yum -y install wget \
     && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
     && yum -y install httpd shibboleth-3.0.3-1.1 mod_ssl mod_wsgi \
     && yum -y install centos-release-scl \
     && yum -y install rh-python36 \
+    && yum -y install git \
+    && yum -y install gcc gcc-c++ libffi-devel cairo cairo-devel \
+    && yum -y install rh-nodejs8-npm rh-nodejs8-nodejs \
     && yum -y clean all
 
 COPY httpd-shibd-foreground /usr/local/bin/
@@ -27,8 +32,25 @@ RUN test -d /var/run/lock || mkdir -p /var/run/lock \
     && sed -i 's/CustomLog logs\/ssl_request_log/CustomLog \/dev\/stdout/g' /etc/httpd/conf.d/ssl.conf \
     && sed -i 's/TransferLog logs\/ssl_access_log/TransferLog \/dev\/stdout/g' /etc/httpd/conf.d/ssl.conf
 
-RUN /opt/rh/rh-python36/root/usr/bin/python -m venv zenodo_venv 
-    
+RUN cd /opt \
+    && /opt/rh/rh-python36/root/usr/bin/python -m venv zenodo_venv \
+    && source zenodo_venv/bin/activate \
+    && cd zenodo \
+    && pip install --upgrade pip \
+    && pip install -r requirements.txt --src ~/src/ --pre --upgrade 
+
+RUN cd /opt \ 
+    && source zenodo_venv/bin/activate \
+    && cd zenodo \
+    && pip install -e .[all,postgresql,elasticsearch2]
+
+RUN source /opt/rh/rh-nodejs8/enable \
+    && source /opt/zenodo_venv/bin/activate \
+    && cd /opt/zenodo \
+    && ./scripts/setup-npm.sh 
+#    && ./scripts/setup-assets.sh
+
+ 
 EXPOSE 80 443
 
 CMD ["httpd-shibd-foreground"]
