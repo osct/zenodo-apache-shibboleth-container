@@ -16,8 +16,10 @@ RUN yum -y update \
     && yum -y clean all
 
 COPY httpd-shibd-foreground /usr/local/bin/
+COPY httpd/conf.d /etc/httpd/
 COPY shibboleth/ /etc/shibboleth/
 COPY zenodo/ /opt/zenodo/
+COPY zenodo-extras/ /opt/zenodo/
 
 RUN test -d /var/run/lock || mkdir -p /var/run/lock \
     && test -d /var/lock/subsys/ || mkdir -p /var/lock/subsys/ \
