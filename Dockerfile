@@ -15,6 +15,8 @@ RUN yum -y update \
     && yum -y install rh-nodejs8-npm rh-nodejs8-nodejs \
     && yum -y clean all
 
+RUN rm -f /etc/httpd/*.conf
+
 COPY httpd-shibd-foreground /usr/local/bin/
 COPY httpd/conf.d /etc/httpd/
 COPY shibboleth/ /etc/shibboleth/
