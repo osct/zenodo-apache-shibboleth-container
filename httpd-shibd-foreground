@@ -4,14 +4,17 @@
 rm -f /etc/httpd/run/httpd.pid /var/lock/subsys/shibd
 
 # Copy custom shibboleth configuration into the configuration folder
-cp -r /opt/shibboleth/* /etc/shibboleth
+if [ -d /opt/shibboleth-config ];then
+    cp -r /opt/shibboleth-config/* /etc/shibboleth
+fi
 
 # Start Shibd
 /etc/shibboleth/shibd-redhat start
 
 # Copy custom http configuration into the configuration folder
-
-cp -r /opt/httpd/* /etc/httpd
+if [ -d /opt/httpd-config ];then
+    cp -r /opt/httpd-config/* /etc/httpd
+fi
 
 # Start httpd
 exec httpd -DFOREGROUND

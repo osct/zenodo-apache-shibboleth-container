@@ -15,13 +15,13 @@ RUN yum -y update \
     && yum -y install rh-nodejs8-npm rh-nodejs8-nodejs \
     && yum -y clean all
 
-RUN rm -f /etc/httpd/*.conf
-
 COPY httpd-shibd-foreground /usr/local/bin/
 COPY httpd/conf.d /etc/httpd/
 COPY shibboleth/ /etc/shibboleth/
 COPY zenodo/ /opt/zenodo/
 COPY zenodo-extras/ /opt/zenodo/
+
+RUN rm -f /etc/httpd/*.conf
 
 RUN test -d /var/run/lock || mkdir -p /var/run/lock \
     && test -d /var/lock/subsys/ || mkdir -p /var/lock/subsys/ \
@@ -51,8 +51,8 @@ RUN cd /opt \
 RUN source /opt/rh/rh-nodejs8/enable \
     && source /opt/zenodo_venv/bin/activate \
     && cd /opt/zenodo \
-    && ./scripts/setup-npm.sh 
-#    && ./scripts/setup-assets.sh
+    && ./scripts/setup-npm.sh \ 
+    && ./scripts/setup-assets.sh
 
  
 EXPOSE 80 443
