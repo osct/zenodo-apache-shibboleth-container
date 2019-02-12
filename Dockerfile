@@ -7,9 +7,9 @@ ENV LANG en_US.UTF-8
 RUN yum -y update \
     && yum -y install wget \
     && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
-    && yum -y install httpd shibboleth-3.0.3-1.1 mod_ssl mod_wsgi \
+    && yum -y install httpd shibboleth-3.0.3-1.1 mod_ssl \
     && yum -y install centos-release-scl \
-    && yum -y install rh-python36 \
+    && yum -y install rh-python36 rh-python36-mod_wsgi \
     && yum -y install git \
     && yum -y install gcc gcc-c++ libffi-devel cairo cairo-devel \
     && yum -y install rh-nodejs8-npm rh-nodejs8-nodejs \
