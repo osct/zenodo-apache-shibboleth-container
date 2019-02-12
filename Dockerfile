@@ -16,7 +16,7 @@ RUN yum -y update \
     && yum -y clean all
 
 COPY httpd-shibd-foreground /usr/local/bin/
-COPY httpd/conf.d /etc/httpd/
+COPY httpd/conf.d/ /etc/httpd/conf.d/
 COPY shibboleth/ /etc/shibboleth/
 COPY zenodo/ /opt/zenodo/
 COPY zenodo-extras/ /opt/zenodo/
