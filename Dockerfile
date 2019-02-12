@@ -9,7 +9,8 @@ RUN yum -y update \
     && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
     && yum -y install httpd shibboleth-3.0.3-1.1 mod_ssl \
     && yum -y install centos-release-scl \
-    && yum -y install rh-python36 rh-python36-mod_wsgi \
+    && yum -y install https://centos7.iuscommunity.org/ius-release.rpm \
+    && yum -y install python36u python36u-devel python36u-mod_wsgi python36u-pip \
     && yum -y install git \
     && yum -y install gcc gcc-c++ libffi-devel cairo cairo-devel \
     && yum -y install rh-nodejs8-npm rh-nodejs8-nodejs \
@@ -37,19 +38,12 @@ RUN test -d /var/run/lock || mkdir -p /var/run/lock \
     && sed -i 's/TransferLog logs\/ssl_access_log/TransferLog \/dev\/stdout/g' /etc/httpd/conf.d/ssl.conf
 
 RUN cd /opt \
-    && /opt/rh/rh-python36/root/usr/bin/python -m venv zenodo_venv \
-    && source zenodo_venv/bin/activate \
     && cd zenodo \
-    && pip install --upgrade pip \
-    && pip install -r requirements.txt --src ~/src/ --pre --upgrade 
-
-RUN cd /opt \ 
-    && source zenodo_venv/bin/activate \
-    && cd zenodo \
-    && pip install -e .[all,postgresql,elasticsearch2]
+    && pip3.6 install --upgrade pip \
+    && pip3.6 install -r requirements.txt --src ~/src/ --pre --upgrade \
+    && pip3.6 install -e .[all,postgresql,elasticsearch2]
 
 RUN source /opt/rh/rh-nodejs8/enable \
-    && source /opt/zenodo_venv/bin/activate \
     && cd /opt/zenodo \
     && ./scripts/setup-npm.sh \ 
     && ./scripts/setup-assets.sh
