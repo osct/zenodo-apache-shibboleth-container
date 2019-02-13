@@ -16,5 +16,15 @@ if [ -d /opt/httpd-config ];then
     cp -r /opt/httpd-config/* /etc/httpd
 fi
 
+# Copy custom zenodo configuration into the configuration folder
+if [ -d /opt/zenodo-config ];then
+    cp -r /opt/zenodo-config/* /opt/zenodo
+fi
+
+# Copy custom invenio configuration into the configuration folder
+if [ -d /opt/invenio-config ];then
+    cp -r /opt/invenio-config/* /opt/zenodo_venv/var/instance
+fi
+
 # Start httpd
 exec httpd -DFOREGROUND
