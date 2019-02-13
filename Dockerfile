@@ -51,6 +51,7 @@ RUN source /opt/rh/rh-nodejs8/enable \
     && ./scripts/setup-npm.sh \ 
     && ./scripts/setup-assets.sh
 
+RUN chown -R apache.apache /opt/zenodo*
  
 EXPOSE 80 443
 
