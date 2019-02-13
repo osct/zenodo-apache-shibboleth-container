@@ -38,12 +38,15 @@ RUN test -d /var/run/lock || mkdir -p /var/run/lock \
     && sed -i 's/TransferLog logs\/ssl_access_log/TransferLog \/dev\/stdout/g' /etc/httpd/conf.d/ssl.conf
 
 RUN cd /opt \
+    && python3.6 -m venv zenodo_venv \
+    && source zenodo_venv/bin/activate \
     && cd zenodo \
-    && pip3.6 install --upgrade pip \
-    && pip3.6 install -r requirements.txt --src ~/src/ --pre --upgrade \
-    && pip3.6 install -e .[all,postgresql,elasticsearch2]
+    && pip install --upgrade pip \
+    && pip install -r requirements.txt --src ~/src/ --pre --upgrade \
+    && pip install -e .[all,postgresql,elasticsearch2]
 
 RUN source /opt/rh/rh-nodejs8/enable \
+    && source /opt/zenodo_venv/bin/activate \
     && cd /opt/zenodo \
     && ./scripts/setup-npm.sh \ 
     && ./scripts/setup-assets.sh
