@@ -5,7 +5,7 @@ rm -f /etc/httpd/run/httpd.pid /var/lock/subsys/shibd
 
 # Copy custom shibboleth configuration into the configuration folder
 if [ -d /opt/shibboleth-config ];then
-    cp -r /opt/shibboleth-config/* /etc/shibboleth
+    cp -Lr /opt/shibboleth-config/* /etc/shibboleth
 fi
 
 # Start Shibd
@@ -13,17 +13,17 @@ fi
 
 # Copy custom http configuration into the configuration folder
 if [ -d /opt/httpd-config ];then
-    cp -r /opt/httpd-config/* /etc/httpd
+    cp -Lr /opt/httpd-config/* /etc/httpd
 fi
 
 # Copy custom zenodo configuration into the configuration folder
 if [ -d /opt/zenodo-config ];then
-    cp -r /opt/zenodo-config/* /opt/zenodo
+    cp -Lr /opt/zenodo-config/* /opt/zenodo
 fi
 
 # Copy custom invenio configuration into the configuration folder
 if [ -d /opt/invenio-config ];then
-    cp -r /opt/invenio-config/* /opt/zenodo_venv/var/instance
+    cp -Lr /opt/invenio-config/* /opt/zenodo_venv/var/instance
 fi
 
 # Start httpd
