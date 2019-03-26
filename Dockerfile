@@ -45,6 +45,12 @@ RUN cd /opt \
     && pip install -r requirements.txt --src ~/src/ --pre --upgrade \
     && pip install -e .[all,postgresql,elasticsearch2]
 
+COPY invenio-migrator/invenio_migrator/ /opt/zenodo_venv/lib/python3.6/site-packages/invenio_migrator/
+
+COPY invenio-github/invenio_github/ /opt/zenodo_venv/lib/python3.6/site-packages/invenio_github/
+
+COPY invenio-github/invenio_github/templates/invenio_github/settings/ /opt/zenodo_venv/lib/python3.6/site-packages/invenio_github/templates/invenio_github/settings/
+
 RUN source /opt/rh/rh-nodejs8/enable \
     && source /opt/zenodo_venv/bin/activate \
     && cd /opt/zenodo \
