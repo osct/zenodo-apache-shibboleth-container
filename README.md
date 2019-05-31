@@ -18,6 +18,11 @@ From source:
 $ docker build --tag="<org_id>/zenodo" github.com/osct/zenodo-apache-shibboleth-container
 ```
 
+A container built with this repository is available on docker hub at
+
+  https://hub.docker.com/r/infnct/zenodo
+
+
 ## Author
 
   * Marco Fargetta (<marco.fargetta@ct.infn.it>)
