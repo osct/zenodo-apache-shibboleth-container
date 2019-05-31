@@ -1,55 +1,37 @@
 ## Overview
-This Docker image is Apache 2.4 with Shibboleth SP 3.0.3 installed running on CentOS 7.
+This Docker image is zenodo software from CERN with Apache 2.4 and Shibboleth SP 3.0.3 installed running on CentOS 7.
 
 This image can be used as a base image overriding the configuration with local changes.
 
 Ports 80 and 443 are exposed for traffic.
 
-A working example of how this image can be used can be found at https://github.com/UniconLabs/dockerized-idp-testbed.
+The image is built to be used mainly inside a kubernetes deployment because it requires several background service to work properly. An example of kubernetes deployment can be found at
 
-## Logs
-Logs for httpd and shibd have been configured to output to the console so that Docker's logging facilities are supported. Each of these logs have been prefaced with an identifier that indicates the type of entry being outputted: `httpd-error`, `httpd-combined`, `sp-shibd`, `sp-native`, `sp-transaction`, `sp-sign`, etc.
+  https://github.com/osct/zenodo-kubernetes
 
-## Use as a Base
-This image is ideal for use as a base image for one's own deployment. 
-
-For example, add your SP configurations to `./shibboleth-sp` and you app files to `./appfiles/`.
-
-Next, assuming the Dockerfile is similar to this example:
-
-```
-FROM unicon/shibboleth-sp
-
-ADD /shibboleth-sp/ /etc/shibboleth/
-ADD /appfiles/ /var/www/html/ 
-```
-
-> This will take the base image that is available in the Docker repository and download it. Next, it overrides all of the base files with your local configuration.
-
-The dependant image can be built by running:
-
-```
-docker build --tag="<org_id>/<image_name>" .
-```
-
-Now, just execute the new image:
-
-```
-$ docker run -dP --name="app-local-test" <org_id>/<image_name> 
-```
 
 ## Building
 
 From source:
 
 ```
-$ docker build --tag="<org_id>/shibboleth-sp" github.com/unicon/shibboleth-sp-dockerized
+$ docker build --tag="<org_id>/zenodo" github.com/osct/zenodo-apache-shibboleth-container
 ```
 
 ## Author
 
+  * Marco Fargetta (<marco.fargetta@ct.infn.it>)
+  * Riccardo Rotondo (<riccardo.rotondo@ct.infn.it>)
+
+### Based on
+
+The Apache and Shibboleth installation and configuration is based on the work of:
+
   * John Gasper (<jgasper@unicon.net>)
 
+Code available at
+
+  https://github.com/Unicon/shibboleth-sp-dockerized
 
 ## LICENSE
 
