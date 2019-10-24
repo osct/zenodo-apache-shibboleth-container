@@ -1,9 +1,9 @@
-[submodule "zenodo"]
-	path = zenodo
-	url = https://github.com/osct/zenodo.git
 [submodule "invenio-migrator"]
 	path = invenio-migrator
 	url = https://github.com/osct/invenio-migrator.git
 [submodule "invenio-github"]
 	path = invenio-github
 	url = https://github.com/osct/invenio-github.git
+[submodule "zenodo"]
+	path = zenodo
+	url = https://github.com/zenodo/zenodo.git
