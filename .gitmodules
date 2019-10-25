@@ -4,3 +4,6 @@
 [submodule "invenio-github"]
 	path = invenio-github
 	url = https://github.com/osct/invenio-github.git
+[submodule "zenodo"]
+	path = zenodo
+	url = https://github.com/osct/zenodo.git
