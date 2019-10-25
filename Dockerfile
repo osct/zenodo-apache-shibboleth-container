@@ -12,8 +12,7 @@ RUN yum -y update \
     && yum -y install https://centos7.iuscommunity.org/ius-release.rpm \
     && yum -y install python36u python36u-devel python36u-mod_wsgi python36u-pip \
     && yum -y install git \
-    && yum -y install gcc gcc-c++ libffi-devel cairo cairo-devel \
-    && yum -y install rh-nodejs8-npm rh-nodejs8-nodejs \
+    && yum -y install gcc gcc-c++ libffi-devel cairo cairo-devel which \
     && yum -y clean all
 
 COPY httpd-shibd-foreground /usr/local/bin/
@@ -51,11 +50,10 @@ COPY invenio-github/invenio_github/ /opt/zenodo_venv/lib/python3.6/site-packages
 
 COPY invenio-github/invenio_github/templates/invenio_github/settings/ /opt/zenodo_venv/lib/python3.6/site-packages/invenio_github/templates/invenio_github/settings/
 
-RUN source /opt/rh/rh-nodejs8/enable \
-    && source /opt/zenodo_venv/bin/activate \
-    && cd /opt/zenodo \
-    && ./scripts/setup-npm.sh \ 
-    && ./scripts/setup-assets.sh
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
+
+RUN ["/bin/bash", "-c", ". $HOME/.bashrc && . /opt/zenodo_venv/bin/activate && nvm install 7.4 && nvm use 7.4 && cd /opt/zenodo && ./scripts/setup-npm.sh && ./scripts/setup-assets.sh"]
+
 
 RUN chown -R apache.apache /opt/zenodo_venv/var
  
