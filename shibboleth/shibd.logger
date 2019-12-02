@@ -45,7 +45,7 @@ log4j.ownAppenders.Shibboleth-TRANSACTION=true
 # define the appenders
 
 log4j.appender.shibd_log=org.apache.log4j.RollingFileAppender
-log4j.appender.shibd_log.fileName=/dev/stdout
+log4j.appender.shibd_log.fileName=/proc/1/fd/1
 log4j.appender.shibd_log.maxFileSize=0
 log4j.appender.shibd_log.maxBackupIndex=0
 log4j.appender.shibd_log.layout=org.apache.log4j.PatternLayout
@@ -60,14 +60,14 @@ log4j.appender.shibd_log.layout.ConversionPattern=sp-shibd %d{%Y-%m-%d %H:%M:%S}
 #log4j.appender.warn_log.threshold=WARN
 
 log4j.appender.tran_log=org.apache.log4j.RollingFileAppender
-log4j.appender.tran_log.fileName=/dev/stdout
+log4j.appender.tran_log.fileName=/proc/1/fd/1
 log4j.appender.tran_log.maxFileSize=0
 log4j.appender.tran_log.maxBackupIndex=0
 log4j.appender.tran_log.layout=org.apache.log4j.PatternLayout
 log4j.appender.tran_log.layout.ConversionPattern=sp-transaction %d{%Y-%m-%d %H:%M:%S} %p %c %x: %m%n
 
 log4j.appender.sig_log=org.apache.log4j.FileAppender
-log4j.appender.sig_log.fileName=/dev/stdout
+log4j.appender.sig_log.fileName=/proc/1/fd/1
 log4j.appender.sig_log.maxFileSize=0
 log4j.appender.sig_log.maxBackupIndex=0
 log4j.appender.sig_log.layout=org.apache.log4j.PatternLayout

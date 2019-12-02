@@ -9,6 +9,7 @@ if [ -d /opt/shibboleth-config ];then
 fi
 
 # Start Shibd
+chmod +x /etc/shibboleth/shibd-redhat
 /etc/shibboleth/shibd-redhat start
 
 # Copy custom http configuration into the configuration folder

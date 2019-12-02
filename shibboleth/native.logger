@@ -28,7 +28,7 @@ log4j.category.XMLTooling.libcurl=WARN
 # define the appender
 
 log4j.appender.native_log=org.apache.log4j.RollingFileAppender
-log4j.appender.native_log.fileName=/dev/stdout
+log4j.appender.native_log.fileName=/proc/1/fd/1
 log4j.appender.native_log.maxFileSize=0
 log4j.appender.native_log.maxBackupIndex=0
 log4j.appender.native_log.layout=org.apache.log4j.PatternLayout
