@@ -9,7 +9,8 @@ RUN yum -y update \
     && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
     && yum -y install httpd shibboleth-3.0.3-1.1 mod_ssl \
     && yum -y install centos-release-scl \
-    && yum -y install https://centos7.iuscommunity.org/ius-release.rpm \
+    && yum -y install https://repo.ius.io/ius-release-el7.rpm \
+    && yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
     && yum -y install python36u python36u-devel python36u-mod_wsgi python36u-pip \
     && yum -y install git \
     && yum -y install gcc gcc-c++ libffi-devel cairo cairo-devel which \
