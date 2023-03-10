@@ -51,6 +51,8 @@ COPY invenio-github/invenio_github/ /opt/zenodo_venv/lib/python3.6/site-packages
 
 COPY invenio-github/invenio_github/templates/invenio_github/settings/ /opt/zenodo_venv/lib/python3.6/site-packages/invenio_github/templates/invenio_github/settings/
 
+RUN git config --global url."https://".insteadOf git://
+
 RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
 
 RUN ["/bin/bash", "-c", ". $HOME/.bashrc && . /opt/zenodo_venv/bin/activate && nvm install 7.4 && nvm use 7.4 && cd /opt/zenodo && ./scripts/setup-npm.sh && ./scripts/setup-assets.sh"]
