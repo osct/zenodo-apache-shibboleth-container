@@ -6,7 +6,7 @@ ENV LANG en_US.UTF-8
 
 RUN yum -y update \
     && yum -y install wget \
-    && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
+    && wget -O /etc/yum.repos.d/shibboleth.repo https://shibboleth.net/cgi-bin/sp_repo.cgi?platform=CentOS_7 \
     && yum -y install httpd shibboleth-3.0.3-1.1 mod_ssl \
     && yum -y install centos-release-scl \
     && yum -y install https://repo.ius.io/ius-release-el7.rpm \
