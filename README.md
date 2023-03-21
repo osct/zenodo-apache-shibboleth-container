@@ -18,7 +18,11 @@ From source:
 $ docker build --tag="<org_id>/zenodo" github.com/osct/zenodo-apache-shibboleth-container
 ```
 
-A container built with this repository is available on docker hub at
+A container built with this repository is available on INFN container registry for this project
+
+  https://baltig.infn.it/infnct/dev/zenodo/container_registry
+
+and on docker hub at
 
   https://hub.docker.com/r/infnct/zenodo
 
